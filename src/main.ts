@@ -3,8 +3,8 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-// guildIDを指定しないとグローバルコマンドになってしまうので面倒
-const guildId = '881924651142479892'
+// guildIDを指定しないとグローバルコマンドになってしまうので反映が遅くて面倒
+const guildId = process.env.GUILD_ID
 
 const client = new Client({
     intents: 32767
@@ -30,7 +30,9 @@ client.once('ready', async () => {
             }]
         }
     ]
-    await client.application?.commands.set(data, guildId)
+    if (guildId) {
+        await client.application?.commands.set(data, guildId)
+    }
 })
 
 client.on('interactionCreate', async (interaction: Interaction) => {
