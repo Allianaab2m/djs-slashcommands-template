@@ -37,14 +37,13 @@ client.once('ready', async () => {
 
 client.on('interactionCreate', async (interaction: Interaction) => {
     if (interaction.isCommand()) {
-        const commandInteraction: CommandInteraction = interaction as CommandInteraction
-        if (commandInteraction.commandName === 'ping') {
-            await commandInteraction.reply('Pong!')
+        if (interaction.commandName === 'ping') {
+            await interaction.reply('Pong!')
         }
-        if (commandInteraction.commandName === 'argreturn') {
+        if (interaction.commandName === 'argreturn') {
             // dataの中で指定したnameに対応した引数を取得
-            const returnValue = commandInteraction.options.getString('arg')
-            await commandInteraction.reply(`${returnValue}`)
+            const returnValue = interaction.options.getString('arg')
+            await interaction.reply(`${returnValue}`)
         }
     }
 })
