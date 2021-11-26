@@ -1,4 +1,4 @@
-import { Client, ApplicationCommandData, Interaction, CommandInteraction } from 'discord.js';
+import { Client, ApplicationCommandData } from 'discord.js';
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -35,7 +35,7 @@ client.once('ready', async () => {
     }
 })
 
-client.on('interactionCreate', async (interaction: Interaction) => {
+client.on('interactionCreate', async (interaction) => {
     if (interaction.isCommand()) {
         if (interaction.commandName === 'ping') {
             await interaction.reply('Pong!')
